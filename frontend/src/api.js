@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_ROOT = process.env.REACT_APP_API || "https://hrms-ocpv.onrender.com";
+const API_ROOT = process.env.REACT_APP_API || "http://localhost:5000/api";
 
 const api = axios.create({
   baseURL: API_ROOT,
@@ -27,5 +27,6 @@ export default {
   getTeams: () => api.get("/teams").then((r) => r.data),
   createTeam: (data) => api.post("/teams", data).then((r) => r.data),
   updateTeam: (id, data) => api.put(`/teams/${id}`, data).then((r) => r.data),
-  deleteTeam: (id) => api.delete(`/teams/${id}`).then((r) => r.data)
+  deleteTeam: (id) => api.delete(`/teams/${id}`).then((r) => r.data),
+  getLogs: () => api.get("/logs").then((r) => r.data)
 };
