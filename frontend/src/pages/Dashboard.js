@@ -3,6 +3,7 @@ import Topbar from "../components/Topbar";
 import Sidebar from "../components/Sidebar";
 import EmployeeList from "../components/EmployeeList";
 import TeamList from "../components/TeamList";
+import LogsList from "../components/LogsList";
 
 export default function Dashboard() {
   const [view, setView] = useState("employees");
@@ -13,7 +14,9 @@ export default function Dashboard() {
       <div className="main-column">
         <Topbar />
         <main className="content-area">
-          {view === "employees" ? <EmployeeList /> : <TeamList />}
+          {view === "employees" && <EmployeeList />}
+          {view === "teams" && <TeamList />}
+          {view === "logs" && <LogsList />}
         </main>
       </div>
     </div>

@@ -166,6 +166,20 @@ body{
 .checkbox-item{display:flex;gap:12px;align-items:center;padding:10px;border-radius:12px;border:1px solid #e2e8f0;background:rgba(248,250,255,0.6)}
 .checkbox-item input{width:18px;height:18px}
 
+.logs-container{display:flex;flex-direction:column;gap:12px;max-height:70vh;overflow-y:auto}
+.log-entry{
+  padding:14px 16px;
+  background:rgba(248,250,255,0.5);
+  border-radius:10px;
+  border-left:3px solid var(--primary);
+  font-family:"Courier New",monospace;
+  font-size:13px;
+  line-height:1.6;
+  transition:background 0.2s ease
+}
+.log-entry:hover{background:rgba(248,250,255,0.8)}
+.log-message{color:#0f172a}
+
 @media (max-width: 880px){
   .sidebar{display:none}
   .app-shell{flex-direction:column}

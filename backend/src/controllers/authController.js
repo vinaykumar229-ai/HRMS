@@ -5,11 +5,24 @@ require("dotenv").config();
 
 exports.signup = async (req, res) => {
   try {
+    if (!process.env.JWT_SECRET) {
+      return res.status(500).json({ error: "JWT_SECRET not configured" });
+    }
+
     const { organizationName, name, email, password } = req.body;
+
+    if (!organizationName || !name || !email || !password) {
+      return res.status(400).json({ error: "All fields are required" });
+    }
 
     let organization = await Organization.findOne({ where: { name: organizationName } });
     if (!organization) {
       organization = await Organization.create({ name: organizationName });
+    }
+
+    const existingUser = await User.findOne({ where: { email } });
+    if (existingUser) {
+      return res.status(400).json({ error: "Email already registered" });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -31,12 +44,20 @@ exports.signup = async (req, res) => {
 
     res.status(201).json({ token, userId: user.id });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error("Signup error:", err);
+    if (err.name === "SequelizeUniqueConstraintError") {
+      return res.status(400).json({ error: "Email or organization name already exists" });
+    }
+    res.status(500).json({ error: err.message || "Internal server error" });
   }
 };
 
 exports.login = async (req, res) => {
   try {
+    if (!process.env.JWT_SECRET) {
+      return res.status(500).json({ error: "JWT_SECRET not configured" });
+    }
+
     const { email, password } = req.body;
     const user = await User.findOne({ where: { email } });
     if (!user) return res.status(404).json({ message: "User not found" });

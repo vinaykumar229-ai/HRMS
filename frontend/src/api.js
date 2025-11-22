@@ -27,5 +27,6 @@ export default {
   getTeams: () => api.get("/teams").then((r) => r.data),
   createTeam: (data) => api.post("/teams", data).then((r) => r.data),
   updateTeam: (id, data) => api.put(`/teams/${id}`, data).then((r) => r.data),
-  deleteTeam: (id) => api.delete(`/teams/${id}`).then((r) => r.data)
+  deleteTeam: (id) => api.delete(`/teams/${id}`).then((r) => r.data),
+  getLogs: () => api.get("/logs").then((r) => r.data)
 };

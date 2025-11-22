@@ -15,7 +15,26 @@ const logRoutes = require("./src/routes/log");
 const app = express();
 
 
-app.use(cors({ origin: process.env.CLIENT_URL || "*" }));
+const allowedOrigins = process.env.CLIENT_URL 
+  ? process.env.CLIENT_URL.split(',').map(url => url.trim().replace(/\/$/, ''))
+  : ["*"];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes("*")) {
+      callback(null, true);
+    } else {
+      const normalizedOrigin = origin.replace(/\/$/, '');
+      if (allowedOrigins.includes(normalizedOrigin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    }
+  },
+  credentials: true
+}));
+
 
 app.use(express.json());
 
@@ -36,7 +55,7 @@ const startServer = async () => {
     await sequelize.sync();
     console.log("PostgreSQL models synced.");
 
-    const PORT = process.env.PORT || 5000;
+    const PORT = process.env.PORT || 10000;
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
   } catch (error) {
     console.error("Failed to start backend:", error);

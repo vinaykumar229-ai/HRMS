@@ -12,6 +12,9 @@ export default function Sidebar({ active, onChange }) {
         <button className={`nav-btn ${active==='teams' ? 'active':''}`} onClick={()=>onChange('teams')}>
           Teams
         </button>
+        <button className={`nav-btn ${active==='logs' ? 'active':''}`} onClick={()=>onChange('logs')}>
+          Logs
+        </button>
       </nav>
     </aside>
   );
