@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_ROOT = process.env.REACT_APP_API || "http://localhost:5000/api";
+const API_ROOT = process.env.REACT_APP_API || "https://hrms-ocpv.onrender.com";
 
 const api = axios.create({
   baseURL: API_ROOT,
