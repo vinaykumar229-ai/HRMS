@@ -5,6 +5,10 @@ require("dotenv").config();
 
 exports.signup = async (req, res) => {
   try {
+    if (!process.env.JWT_SECRET) {
+      return res.status(500).json({ error: "JWT_SECRET not configured" });
+    }
+
     const { organizationName, name, email, password } = req.body;
 
     let organization = await Organization.findOne({ where: { name: organizationName } });
@@ -37,6 +41,10 @@ exports.signup = async (req, res) => {
 
 exports.login = async (req, res) => {
   try {
+    if (!process.env.JWT_SECRET) {
+      return res.status(500).json({ error: "JWT_SECRET not configured" });
+    }
+
     const { email, password } = req.body;
     const user = await User.findOne({ where: { email } });
     if (!user) return res.status(404).json({ message: "User not found" });
