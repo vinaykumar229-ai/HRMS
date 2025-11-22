@@ -36,7 +36,7 @@ const startServer = async () => {
     await sequelize.sync();
     console.log("PostgreSQL models synced.");
 
-    const PORT = process.env.PORT || 5000;
+    const PORT = process.env.PORT || 10000;
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
   } catch (error) {
     console.error("Failed to start backend:", error);
