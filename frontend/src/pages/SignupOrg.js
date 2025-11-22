@@ -28,7 +28,7 @@ export default function SignupOrg() {
         alert(res.message || "Signup failed");
       }
     } catch (err) {
-      alert(err.response?.data?.message || "Signup error");
+      alert(err.response?.data?.error || err.response?.data?.message || "Signup error");
     } finally {
       setBusy(false);
     }
