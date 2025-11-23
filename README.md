@@ -142,7 +142,7 @@ HRMS/
 ```
 
 
-## 🚢 Deployment
+##  Deployment
 
 ### Backend Deployment (Render)
 
