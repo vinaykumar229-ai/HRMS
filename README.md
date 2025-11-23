@@ -2,7 +2,7 @@
 
 A full-stack web application for managing employees, teams, and organizational activities with comprehensive logging and audit trails.
 
-## 🚀 Features
+##  Features
 
 ### Core Functionality
 - **Employee Management**: Create, read, update, and delete employees
@@ -21,7 +21,7 @@ A full-stack web application for managing employees, teams, and organizational a
 
 All logs are stored in PostgreSQL and displayed in a user-friendly format with timestamps and user information.
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 ### Backend
 - **Node.js** with Express.js
@@ -35,13 +35,13 @@ All logs are stored in PostgreSQL and displayed in a user-friendly format with t
 - **Axios** for API communication
 - **Modern CSS** with custom styling
 
-## 📋 Prerequisites
+##  Prerequisites
 
 - Node.js (v14 or higher)
 - PostgreSQL (for production) or SQLite (for local development)
 - npm or yarn
 
-## 🔧 Installation & Setup
+##  Installation & Setup
 
 ### 1. Clone the Repository
 
@@ -55,32 +55,6 @@ cd HRMS
 ```bash
 cd backend
 npm install
-```
-
-Create a `.env` file in the `backend` directory:
-
-```env
-# Database Configuration (for PostgreSQL)
-DATABASE_URL=postgres://user:password@localhost:5432/hrms
-
-# OR for local development with individual variables
-DB_NAME=hrms
-DB_USER=postgres
-DB_PASSWORD=yourpassword
-DB_HOST=localhost
-DB_PORT=5432
-
-# JWT Secret (generate a secure random string)
-JWT_SECRET=your-secret-key-here
-
-# Client URL (frontend URL for CORS)
-CLIENT_URL=http://localhost:3000
-
-# Environment
-NODE_ENV=development
-
-# Port (optional, defaults to 5000)
-PORT=5000
 ```
 
 Start the backend server:
@@ -116,7 +90,7 @@ npm start
 
 The frontend will be running on `http://localhost:3000`
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 HRMS/
